@@ -6,15 +6,15 @@
 Το τρέχετε από το φάκελο όπου το έχετε αποθηκεύσει δίνοντας στο τερματικό
 ```./radio.sh```
 
-Απαιτείται το πακέτο ```mplayer``` για να δουλεψει
+Απαιτείται το πακέτο ```mplayer``` ή το ```mpv``` για να δουλεψει
 
 ## Σε Debian based διανομές
-```sudo apt install mplayer```
+```sudo apt install mplayer``` ή ```sudo apt install mpv```
 ## Σε Arch based διανομές
-```sudo pacman -S mplayer```
+```sudo pacman -S mplayer``` ή ```sudo pacman -S mpv```
 ## Σε Fedora based διανομές
-```sudo dnf install mplayer```
+```sudo dnf -y install mplayer``` ή ```sudo dnf -y install mpv```
 ## Σε OpenSuse Linux
-```sudo zypper in mplayer```
+```sudo zypper in mplayer``` ή ```sudo zypper in mpv```
 ## Σε CentOS Linux (από το nux-desktop repository)
-```sudo yum -y install mplayer```
+```sudo yum -y install mplayer``` ή ```sudo yum -y install mpv```
