@@ -11,7 +11,7 @@
 Σε κάποιες διανομές δίνεται κατευθείαν είτε το ```mplayer``` είτε το ```mpv``` στα αποθετήριά τους, οπότε καλό είναι να το ελέγξετε πρώτα
 
 ## Σε Debian based διανομές
-```sudo apt install mplayer``` ή ```sudo apt install mpv```
+```sudo apt install mplayer``` (από το Debian Multimedia repository) ή ```sudo apt install mpv```
 ## Σε Arch based διανομές
 ```sudo pacman -S mplayer``` ή ```sudo pacman -S mpv```
 ## Σε Fedora based διανομές
