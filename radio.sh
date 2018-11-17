@@ -2,6 +2,15 @@
 terms=0
 trap ' [ $terms = 1 ] || { terms=1; kill -TERM -$$; };  exit' EXIT INT HUP TERM QUIT 
 
+player=$(which mplayer 2>/dev/null || which mpv 2>/dev/null  || echo "1")
+# echo $player
+if [[ $player = 1 ]];
+	then
+	echo "Δε βρέθηκε συμβατός player, συμβατοί players είναι οι mplayer και mpv"
+	exit
+fi
+
+
 info() {
 echo "Η ώρα είναι "$(date +"%T")""
 echo "Ακούτε "$stathmos_name""
@@ -9,7 +18,6 @@ echo "Πατήστε Q/q για έξοδο"
 
 }
 num=0 
-
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
     num=$(( $num + 1 ))
@@ -38,7 +46,7 @@ done
 
 
 
-mplayer $stathmos_url &> /dev/null &
+$player $stathmos_url &> /dev/null &
 while true
 
 do 
