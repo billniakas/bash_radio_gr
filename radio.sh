@@ -5,36 +5,35 @@ trap ' [ $terms = 1 ] || { terms=1; kill -TERM -$$; };  exit' EXIT INT HUP TERM 
 info() {
 echo "Η ώρα είναι "$(date +"%T")""
 echo "Ακούτε "$stathmos_name""
-echo "Πατήστε Q για έξοδο"
+echo "Πατήστε Q/q για έξοδο"
 
 }
-options=("Real FM 97.8" "Skai 100.3" "ΕΡΑ Σπορ 101.8" "Έξοδος")
-PS3="Διαλέξτε σταθμό : " 
-select opt in "${options[@]}"
+num=0 
 
-do	
 
-    case $opt in
-        "Real FM 97.8")
-            stathmos_name="Real FM 97.8"
-	    stathmos_url="http://realfm.live24.gr:80/realfm"
-	    break
-	    ;;
-        "Skai 100.3")
-	    stathmos_name="Σκάι 100.3"
-	    stathmos_url="http://secure1.live24.gr/skai1003"
-	    break
-	    ;;
-        "ΕΡΑ Σπορ 101.8")
-	    stathmos_name="ΕΡΑ Σπορ 101.8"
-	    stathmos_url="http://radiostreaming.ert.gr:80/ert-erasport"
-	    break
-	    ;;
-        "Έξοδος")
-            exit 0
-            ;;
-        *) echo "μη έγκυρος αριθμός $REPLY";;
-    esac
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    num=$(( $num + 1 ))
+    echo $num")" $line | cut -d "," -f1
+done < gr_stations.txt
+
+# echo $num
+
+while true 
+do
+read -rp "Διαλέξτε Σταθμό : " input
+if [[ $input -gt 0 ]] | [[ $input -le $num ]];
+	then
+	stathmos_name=$(cat gr_stations.txt | head -n$(( $input )) | tail -n1 | cut -d "," -f1)
+	stathmos_url=$(cat gr_stations.txt | head -n$(( $input )) | tail -n1 | cut -d "," -f2)
+	echo 
+	echo $stathmos_name
+	echo $stathmos_url
+	break
+
+	else
+	echo "Αριθμός εκτός λίστας"
+	
+fi
 done
 
 
@@ -49,7 +48,8 @@ do
 	   read -n 1 -t 0.1 input                  # Για μικρότερη αναμονή της read
 	   if [[ $input = "q" ]] || [[ $input = "Q" ]] 
    		then
-	        echo
+		echo
+	        echo "Έξοδος..."
            	break
            fi
 done
