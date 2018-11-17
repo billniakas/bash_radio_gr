@@ -2,6 +2,14 @@
 terms=0
 trap ' [ $terms = 1 ] || { terms=1; kill -TERM -$$; };  exit' EXIT INT HUP TERM QUIT 
 
+if [ "$#" -eq "0" ]		    #στην περίπτωση που δε δωθεί όρισμα παίρνει το προκαθορισμένο αρχείο
+	then
+	stations="gr_stations.txt"
+	else
+	stations=$1
+fi
+# echo $stations
+# exit 0
 player=$(which mplayer 2>/dev/null || which mpv 2>/dev/null  || echo "1")
 # echo $player
 if [[ $player = 1 ]];
@@ -9,7 +17,6 @@ if [[ $player = 1 ]];
 	echo "Δε βρέθηκε συμβατός player, συμβατοί players είναι οι mplayer και mpv"
 	exit
 fi
-
 
 info() {
 echo "Η ώρα είναι "$(date +"%T")""
@@ -21,8 +28,8 @@ num=0
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
     num=$(( $num + 1 ))
-    echo $num")" $line | cut -d "," -f1
-done < gr_stations.txt
+    echo "["$num"]" $line | cut -d "," -f1
+done < $stations
 
 # echo $num
 
@@ -31,8 +38,8 @@ do
 read -rp "Διαλέξτε Σταθμό : " input
 if [[ $input -gt 0 ]] | [[ $input -le $num ]];
 	then
-	stathmos_name=$(cat gr_stations.txt | head -n$(( $input )) | tail -n1 | cut -d "," -f1)
-	stathmos_url=$(cat gr_stations.txt | head -n$(( $input )) | tail -n1 | cut -d "," -f2)
+	stathmos_name=$(cat $stations | head -n$(( $input )) | tail -n1 | cut -d "," -f1)
+	stathmos_url=$(cat $stations | head -n$(( $input )) | tail -n1 | cut -d "," -f2)
 	echo 
 	echo $stathmos_name
 	echo $stathmos_url
@@ -43,7 +50,6 @@ if [[ $input -gt 0 ]] | [[ $input -le $num ]];
 	
 fi
 done
-
 
 
 $player $stathmos_url &> /dev/null &
