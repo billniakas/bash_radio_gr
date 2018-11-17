@@ -18,3 +18,5 @@
 ```sudo zypper in mplayer``` ή ```sudo zypper in mpv```
 ## Σε CentOS Linux (από το nux-desktop repository)
 ```sudo yum -y install mplayer``` ή ```sudo yum -y install mpv```
+## Σε FreeBSD Unix
+```sudo pkg install mplayer``` ή ```sudo pkg install mpv```
