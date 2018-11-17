@@ -1,4 +1,15 @@
 # bash_radio_gr
-A simple bash script to store and play your favorite greek stations.
+Έαν απλό bash script για να παίζετε τους αγαπημένους σας σταθμούς στο τερματικό. Απλά προσθέτε το όνομα και το URL του σταθμού στο ```gr_stations.txt``` όπου κάθε γραμμή πρέπει να είναι της μορφής 
 
-Requires ```mplayer``` in order to play
+```Όνομα σταθμού,URL_σταθμού```
+
+Το τρέχετε από το φάκελο όπου το έχετε αποθηκεύσει δίνοντας στο τερματικό
+```./radio.sh```
+
+Απαιτείται το πακέτο ```mplayer``` για να δουλεψει
+
+## Σε Debian based διανομές
+```sudo apt install mplayer```
+## Σε Arch based διανομές
+```sudo pacman -S mplayer```
+
