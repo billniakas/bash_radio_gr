@@ -12,4 +12,9 @@
 ```sudo apt install mplayer```
 ## Σε Arch based διανομές
 ```sudo pacman -S mplayer```
-
+## Σε Fedora based διανομές
+```sudo dnf install mplayer```
+## Σε OpenSuse Linux
+```sudo zypper in mplayer```
+## Σε CentOS Linux (από το nux-desktop repository)
+```sudo yum -y install mplayer
