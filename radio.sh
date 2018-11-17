@@ -2,7 +2,7 @@
 terms=0
 trap ' [ $terms = 1 ] || { terms=1; kill -TERM -$$; };  exit' EXIT INT HUP TERM QUIT 
 
-player=$(which mplayer 2>/dev/null || which mpv 2>/dev/null  || echo "1")
+player=$(which mpv 2>/dev/null || which mplayer 2>/dev/null  || echo "1")
 # echo $player
 if [[ $player = 1 ]];
 	then
