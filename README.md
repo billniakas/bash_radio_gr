@@ -17,4 +17,4 @@
 ## Σε OpenSuse Linux
 ```sudo zypper in mplayer```
 ## Σε CentOS Linux (από το nux-desktop repository)
-```sudo yum -y install mplayer
+```sudo yum -y install mplayer```
