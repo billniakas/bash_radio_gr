@@ -20,10 +20,16 @@ fi
 
 info() {
 echo "Η ώρα είναι "$(date +"%T")""
+echo "---------------------------------------------------------"
 echo "Ακούτε "$stathmos_name""
 echo "Πατήστε Q/q για έξοδο"
-
+echo "---------------------------------------------------------"
 }
+echo "---------------------------------------------------------"
+echo "bash_radio_gr - ακούστε online ραδιόφωνο από το τερματικό"
+echo "---------------------------------------------------------"
+echo "https://github.com/billniakas/bash_radio_gr"
+echo "---------------------------------------------------------"
 num=0 
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
@@ -35,22 +41,37 @@ done < $stations
 
 while true 
 do
-read -rp "Διαλέξτε Σταθμό : " input
-if [[ $input -gt 0 ]] | [[ $input -le $num ]];
+echo "---------------------------------------------------------"
+read -rp "Διαλέξτε Σταθμό (Q/q για έξοδο): " input
+
+if [[ $input -gt 0 ]] | [[ $input -le $num ]] || [[ $input = "q" ]] || [[ $input = "Q" ]] ;
 	then
+
+	   if [[ $input = "q" ]] || [[ $input = "Q" ]] 
+   		then
+		stathmos_name=$(echo "1")
+		stathmos_url=$(echo "1")
+		break
+           fi
+	
 	stathmos_name=$(cat $stations | head -n$(( $input )) | tail -n1 | cut -d "," -f1)
 	stathmos_url=$(cat $stations | head -n$(( $input )) | tail -n1 | cut -d "," -f2)
 	echo 
 	echo $stathmos_name
 	echo $stathmos_url
 	break
-
 	else
 	echo "Αριθμός εκτός λίστας"
 	
 fi
 done
-
+#echo $stathmos_name
+#echo $stathmos_url
+	   if [[ $stathmos_name = "1" ]] | [[ $stathmos_url = "1" ]];
+   		then
+		echo "Έξοδος..."
+           	exit 0
+           fi
 
 $player $stathmos_url &> /dev/null &
 while true
@@ -58,8 +79,8 @@ while true
 do 
 	   clear 
 	   info
-	   sleep 0.1
-	   read -n 1 -t 0.1 input                  # Για μικρότερη αναμονή της read
+	   sleep 0
+	   read -n1 -t1 input          # Για μικρότερη αναμονή της read
 	   if [[ $input = "q" ]] || [[ $input = "Q" ]] 
    		then
 		echo
