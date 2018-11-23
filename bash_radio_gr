@@ -1,4 +1,16 @@
 #!/bin/bash
+#
+#
+# bash_radio_gr - ακούστε online ραδιόφωνο από το τερματικό
+# Copyright (c)2018 Vasilis Niakas and Contributors
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation version 3 of the License.
+#
+# Please read the file LICENSE and README for more information.
+#
+#
 terms=0
 trap ' [ $terms = 1 ] || { terms=1; kill -TERM -$$; };  exit' EXIT INT HUP TERM QUIT 
 
