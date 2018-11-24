@@ -22,7 +22,7 @@ if [ "$#" -eq "0" ]		    #στην περίπτωση που δε δωθεί ό�
 fi
 # echo $stations
 # exit 0
-player=$(which mplayer 2>/dev/null || which mpv 2>/dev/null  || echo "1")
+player=$(command -v mpg123 2>/dev/null || command -v mplayer 2>/dev/null || command -v mpv 2>/dev/null || echo "1")
 # echo $player
 if [[ $player = 1 ]];
 	then
@@ -31,11 +31,7 @@ if [[ $player = 1 ]];
 fi
 
 info() {
-echo "Η ώρα είναι "$(date +"%T")""
-echo "---------------------------------------------------------"
-echo "Ακούτε "$stathmos_name""
-echo "Πατήστε Q/q για έξοδο"
-echo "---------------------------------------------------------"
+echo "| Η ώρα είναι "$(date +"%T")" | Ακούτε "$stathmos_name" | Πατήστε Q/q για έξοδο |"
 }
 echo "---------------------------------------------------------"
 echo "bash_radio_gr - ακούστε online ραδιόφωνο από το τερματικό"
