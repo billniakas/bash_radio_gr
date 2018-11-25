@@ -22,7 +22,7 @@ if [ "$#" -eq "0" ]		    #στην περίπτωση που δε δωθεί ό�
 fi
 # echo $stations
 # exit 0
-player=$(command -v mpg123 2>/dev/null || command -v mplayer 2>/dev/null || command -v mpv 2>/dev/null || echo "1")
+player=$(command -v mpv 2>/dev/null || command -v mplayer 2>/dev/null || command -v mpg123 2>/dev/null || echo "1")
 # echo $player
 if [[ $player = 1 ]];
 	then
