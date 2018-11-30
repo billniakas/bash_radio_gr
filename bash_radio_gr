@@ -32,6 +32,7 @@ if [[ $player = 1 ]];
 fi
 
 info() {
+tput civis      -- invisible  # Εξαφάνιση cursor
 echo "| Η ώρα είναι "$(date +"%T")" | Ακούτε "$stathmos_name" | Πατήστε Q/q για έξοδο ή R/r για επιστροφή στη λίστα σταθμών |"
 }
 echo "---------------------------------------------------------"
@@ -54,6 +55,7 @@ read -rp "Διαλέξτε Σταθμό (Q/q για έξοδο): " input
 if [[ $input = "q" ]] || [[ $input = "Q" ]] 
    	then
 	echo "Έξοδος..."
+	tput cnorm   -- normal  # Εμφάνιση cursor
 	exit 0
 fi
 
@@ -81,6 +83,7 @@ do
    		then
 		clear
 		echo "Έξοδος..."
+		tput cnorm   -- normal  # Εμφάνιση cursor
            	exit 0
            fi
 
@@ -89,9 +92,12 @@ do
 		killall -9 $player &> /dev/null
 		clear
 		echo "Επιστροφή στη λίστα σταθμών"
+		tput cnorm   -- normal  # Εμφάνιση cursor
 		sleep 2
 		clear
 		break
+
+
 		
 	   fi
 done
